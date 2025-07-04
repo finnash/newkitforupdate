@@ -33,7 +33,12 @@ const appUrl = getBaseUrl();
 
 export const auth = betterAuth({
 	baseURL: appUrl,
-	trustedOrigins: [appUrl],
+	trustedOrigins: [
+		appUrl,
+		"https://finstarter-nextjs-main-web.vercel.app", // <-- Add your Vercel deployment URL here!
+		// If you have a custom domain, add it here as well:
+		// "https://your-custom-domain.com",
+	],
 	appName: config.appName,
 	database: prismaAdapter(db, {
 		provider: "postgresql",
@@ -233,4 +238,4 @@ export type OrganizationMemberRole =
 
 export type OrganizationInvitationStatus = typeof auth.$Infer.Invitation.status;
 
-export type OrganizationMetadata = Record<string, unknown> | undefined;
+export type OrganizationMetadata = Record<string, unknown> | undefined; 
